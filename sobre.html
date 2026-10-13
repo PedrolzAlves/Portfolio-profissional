@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre mim | PedroStation 4</title>
+    <meta name="description" content="Sobre Pedro Luiz: formação, experiência e contato."/>
+    <link rel="icon" href="./assets/svg/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/css/style.min.css" />
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body class="paginaSobre">
+    <!-- Ícones usados na página -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="i-local" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></symbol>
+      <symbol id="i-capelo" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.8 9.7V16c0 1.7 3 3.5 6.8 3.5s6.8-1.8 6.8-3.5v-3.3L12 16.4l-6.8-3.7z"/></symbol>
+      <symbol id="i-maleta" viewBox="0 0 24 24"><path d="M9 3h6a2 2 0 0 1 2 2v1h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4V5a2 2 0 0 1 2-2zm0 3h6V5H9v1zM4 8v4h16V8H4zm0 6v4h16v-4h-7v1h-2v-1H4z"/></symbol>
+      <symbol id="i-email" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.2V17h16V7.2l-8 5.3-8-5.3zM5.6 7l6.4 4.3L18.4 7H5.6z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+      <symbol id="i-ps" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="13" height="13"/><path d="M30.5 3 37 16H24z"/><path d="M4 24l11 11M15 24 4 35"/><circle cx="30.5" cy="29.5" r="6.5"/></g></symbol>
+    </svg>
+
+    <div id="fundoAnimado">
+      <div class='box'>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+      </div>
+    </div>
+
+    <main class="sobre">
+      <div class="sobreTopo">
+        <h1 class="sobreTitulo">Sobre mim</h1>
+        <svg class="sobreSimbolos" aria-hidden="true"><use href="#i-ps"/></svg>
+      </div>
+
+      <!-- Apresentação (inspirada na página de jogo da PS Store) -->
+      <section class="apresentacao entrada">
+        <div class="apresentacaoLateral">
+          <img class="apresentacaoFoto" src="./assets/img/me.jpg" alt="Foto de Pedro Luiz">
+          <a class="botaoDestaque" href="#contato" id="irContato">
+            <span>Falar comigo</span>
+            <svg aria-hidden="true"><use href="#i-email"/></svg>
+          </a>
+          <span class="abaAtiva">Visão geral</span>
+        </div>
+
+        <div class="apresentacaoInfo">
+          <div class="apresentacaoCabecalho">
+            <h2 class="apresentacaoNome">Pedro Luiz</h2>
+            <span class="apresentacaoCargo">Desenvolvedor de Sistemas</span>
+          </div>
+
+          <p class="apresentacaoMeta">
+            <span><svg aria-hidden="true"><use href="#i-local"/></svg> Belo Horizonte, MG</span>
+            <span><svg aria-hidden="true"><use href="#i-capelo"/></svg> Ciência da Computação · PUC Minas</span>
+            <span><svg aria-hidden="true"><use href="#i-maleta"/></svg> TI · Difarmig</span>
+          </p>
+
+          <div class="apresentacaoPaineis">
+            <div class="painelTexto">
+              <p>
+                Sou estudante de Ciência da Computação na PUC Minas e Técnico em Desenvolvimento de Sistemas
+                pelo SENAI. Hoje atuo no setor de TI da Difarmig, criando e mantendo projetos como APIs web
+                para análises comerciais e aplicativos mobile.
+              </p>
+              <p>
+                Gosto de aprender na prática e de transformar ideias em soluções úteis, sempre em busca de
+                novos desafios e oportunidades de crescimento profissional.
+              </p>
+            </div>
+
+            <ul class="painelNumeros">
+              <li><strong>1+</strong><span>Ano de experiência</span></li>
+              <li><strong>11</strong><span>Tecnologias</span></li>
+              <li><strong>2</strong><span>Formações</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato (inspirado na tela de mensagens do PS4) -->
+      <section class="contato entrada" id="contato">
+        <h2 class="contatoTitulo">
+          <img src="./assets/img/me.jpg" alt=""> Fale comigo
+        </h2>
+
+        <div class="contatoCorpo">
+          <nav class="contatoMenu" aria-label="Contato">
+            <button type="button" class="contatoItem ativo" id="focarMensagem">
+              <svg aria-hidden="true"><use href="#i-email"/></svg> Mensagem
+            </button>
+            <a class="contatoItem" href="https://github.com/PedroLzAlves" target="_blank" rel="noopener noreferrer">
+              <svg aria-hidden="true"><use href="#i-github"/></svg> GitHub
+            </a>
+            <a class="contatoItem" href="https://www.linkedin.com/in/pedroluizalves/" target="_blank" rel="noopener noreferrer">
+              <svg aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn
+            </a>
+
+            <a class="contatoVoltar" href="./index.html#perfis">Voltar aos perfis</a>
+          </nav>
+
+          <form class="chat" id="formMensagem">
+            <div class="chatHistorico">
+              <div class="chatBolha">
+                <img src="./assets/img/me.jpg" alt="">
+                <div>
+                  <strong>Pedro Luiz</strong>
+                  <p>Olá! Obrigado pela visita. Deixe sua mensagem abaixo e ela vai direto para o meu e-mail.</p>
+                </div>
+              </div>
+              <span class="chatSimbolos" aria-hidden="true">△○✕□</span>
+            </div>
+
+            <div class="chatCampos">
+              <input class="chatCampo" name="nome" placeholder="Seu nome" autocomplete="name" required>
+              <input class="chatCampo" name="assunto" placeholder="Assunto (opcional)">
+            </div>
+
+            <div class="chatEnvio">
+              <textarea class="chatCampo chatMensagem" name="mensagem" rows="3" placeholder="Digite sua mensagem" required></textarea>
+              <button type="submit" class="chatEnviar">Enviar</button>
+            </div>
+
+            <p class="chatStatus" id="chatStatus" aria-live="polite" hidden>
+              Abrindo seu aplicativo de e-mail com a mensagem pronta…
+              Não abriu? <a id="linkGmail" href="#" target="_blank" rel="noopener noreferrer">Enviar pelo Gmail</a>
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!--========== JAVASCRIPT ===========-->
+    <script src="./assets/js/sobre.js"></script>
+  </body>
+</html>

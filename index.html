@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PedroStation 4</title>
+    <meta name="description"content="Responsive Website PlayStation by Davi S."/>
+    <meta name="author" content="Davi" />
+    <link rel="icon" href="./assets/svg/logo.svg" type="image/svg+xml" />
+    <link href="./assets/css/google.css" rel="stylesheet"/>
+    <link href="./assets/boxicons.min.css" rel="stylesheet"/>
+    <link rel="preload" href="./assets/css/style.min.css" as="style" />
+    <link rel="stylesheet" href="./assets/css/style.min.css" />
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/animate.min.css">
+  </head>
+  <body>
+    <img id="imagem" src="./assets/img/start.png" alt="Start">
+  <div id="mensagem"> Aperte Start ou Espaço </div>
+
+
+    <div id="fundoAnimado" hidden>
+      <div class='box'>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+      </div>
+    </div>
+
+    <!-- Seleção de perfil -->
+    <section id="telaPerfis" hidden>
+      <div class="perfisLogo">
+        <img src="./assets/img/logo.png" alt="">
+        <span>PS4</span>
+      </div>
+
+      <div class="perfisConteudo animated fadeIn">
+        <h1 class="perfisTitulo">Bem-vindo de volta ao PedroStation</h1>
+        <p class="perfisSubtitulo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6h9A5.5 5.5 0 0 1 22 11.5V16a3 3 0 0 1-5.4 1.8L15 16H9l-1.6 1.8A3 3 0 0 1 2 16v-4.5A5.5 5.5 0 0 1 7.5 6Zm-.5 3v1.5H5.5v1.5H7v1.5h1.5V12H10v-1.5H8.5V9H7Zm9.5 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-2 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg> Portifólio online FOLIOSHOCK™4 conectado.<br>
+          Seja bem vindo ao meu portfólio. Selecione uma das opções para entrar.
+        </p>
+
+        <div class="perfisLista">
+          <button class="perfil" data-perfil="sobre">
+            <img class="perfilAvatar" src="./assets/img/profile.png" alt="">
+            <span class="perfilNome">Sobre mim</span>
+          </button>
+          <button class="perfil" data-perfil="portfolio">
+            <img class="perfilAvatar" src="./assets/img/profile.png" alt="">
+            <span class="perfilNome">Portfólio</span>
+          </button>
+          <button class="perfil" data-perfil="experiencias">
+            <img class="perfilAvatar" src="./assets/img/profile.png" alt="">
+            <span class="perfilNome">Experiências</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!--========== JAVASCRIPT ===========-->
+    <script src="./assets/js/perfis.js"></script>
+  </body>
+</html>
