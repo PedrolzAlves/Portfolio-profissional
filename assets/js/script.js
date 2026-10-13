@@ -46,14 +46,9 @@ function currentTime() {
     
 currentTime();
     
-    //Controller
-const rAF = window.mozRequestAnimationFrame || window.requestAnimationFrame;
 let current = 1;
 let focusable = document.querySelectorAll('a.href, [tabindex], [tabindex]:not([tabindex="-1"])');
 
-window.addEventListener('gamepadconnected', function (e) {
-    updateLoop();
-});
 //Audios
 function play_a() {
     var audio = new Audio('./assets/js/navigate.mp3');
@@ -78,12 +73,7 @@ if (btnVibration) {
 }
 
 function hapticFeedback() {
-    navigator.getGamepads()[0].vibrationActuator.playEffect('dual-rumble', {
-        startDelay: 0,
-        duration: 1500,
-        weakMagnitude: 1,
-        strongMagnitude: 1
-    });
+    Controle.vibrar(1500);
 }
 
 function shutdown(){
@@ -98,12 +88,7 @@ const shutdown2 = document.querySelector('#shutdown');
 if (shutdown2) {
     shutdown2.addEventListener('click', function (e) {
         shutdown();
-        navigator.getGamepads()[0].vibrationActuator.playEffect('dual-rumble', {
-        startDelay: 0,
-        duration: 250,
-        weakMagnitude: 1,
-        strongMagnitude: 1
-    });
+        Controle.vibrar(250);
     });
 }
 //Navigate on page
@@ -135,102 +120,36 @@ function prevItem(index) {
     focusable[current].focus();
 }
 
-let index = 0;
-    
+// A tela tem uma linha só: cima vai para o botão da barra do topo e baixo volta para os projetos
 function upItem() {
-    current = index % focusable.length;
-  if (index === 0) {
-    index = focusable.length - 1;
-  } else {
-    let currentOffsetTop = focusable[index].offsetTop;
-    let prevOffsetTop = focusable[index - 1]?.offsetTop; // add a check for undefined here
-    while (index > 0 && currentOffsetTop === prevOffsetTop) {
-      index--;
-      currentOffsetTop = focusable[index].offsetTop;
-      prevOffsetTop = focusable[index - 1]?.offsetTop; // add a check for undefined here
-    }
-    focusable[index].focus();
-  }
+    focusable[0].focus();
 }
 
 function downItem() {
-  if (index === focusable.length - 1) {
-    index = 0;
-  } else {
-    let currentOffsetTop = focusable[index].offsetTop;
-    let nextOffsetTop = focusable[index + 1]?.offsetTop; // add a check for undefined here
-    while (index < focusable.length - 1 && currentOffsetTop === nextOffsetTop) {
-        index++;
-        currentOffsetTop = focusable[index].offsetTop;
-        nextOffsetTop = focusable[index + 1]?.offsetTop; // add a check for undefined here
-    }
-    focusable[index].focus();
-  }
+    focusable[current].focus();
 }
 
 function clickItem(index) {
-    if (focusable[index]) {
-        focusable[index].click();
+    // Se o foco estiver em outro item (ex.: o + da barra do topo), clica nele
+    const focado = Array.from(focusable).includes(document.activeElement) ? document.activeElement : focusable[index];
+    if (focado) {
+        focado.click();
     }
 }
 
-function updateLoop() {
-    let gp = navigator.getGamepads()[0];
-    console.log(current);
-    console.log(gp);
-
-    let controllerType = "";
-    if (gp.id === "Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 09cc)") {
-        controllerType = "Dualshock 4";
-    } else if (gp.id === "Xbox One Wired Controller (STANDARD GAMEPAD Vendor: 045e Product: 02ea)") {
-        controllerType = "Xbox Wireless Controller";
-    }
-    console.log(controllerType);
-
-    switch (true) {
-        case gp.buttons[0].pressed:
-            clickItem(current);
-            break;
-        case gp.buttons[14].pressed:
-        case gp.axes[0] === -1:
-            prevItem(current);
-            play_a();
-            break;
-        case gp.buttons[15].pressed:
-        case gp.axes[0] === 1:
-            nextItem(current);
-            play_a();
-            break;
-        case gp.axes[1] === -1: // Down
-            case gp.buttons[13].pressed:
-            downItem(current);
-            play_a();
-            break;
-        case gp.axes[1] === 1: // Up
-            case gp.buttons[12].pressed:
-            upItem(current);
-            play_a();
-            break;
-        case gp.buttons[9].pressed:
-        case gp.buttons[8].pressed:
-            hapticFeedback();
-            break;
-        case gp.buttons[5].pressed:
-            jump_last(current);
-            play_a();
-            break;
-        case gp.buttons[4].pressed:
-            jump_first(current);
-            play_a();
-            break;
-        default:
-            break;
-    }
-
-    setTimeout(function () {
-        rAF(updateLoop);
-    }, 130);
-}
+//Controller
+Controle.iniciar({
+    confirmar: function () { clickItem(current); },
+    voltar: function () { document.location.href = "./index.html#perfis"; },
+    esquerda: function () { prevItem(current); play_a(); },
+    direita: function () { nextItem(current); play_a(); },
+    cima: function () { upItem(); play_a(); },
+    baixo: function () { downItem(); play_a(); },
+    l1: function () { jump_first(); play_a(); },
+    r1: function () { jump_last(); play_a(); },
+    start: hapticFeedback,
+    select: hapticFeedback
+});
 
 //Navigate using keyboard
 
@@ -267,6 +186,9 @@ document.addEventListener("keydown", function (event) {
         case "ShiftRight":
             jump_last(current);
             play_a();
+            break;
+        case "Escape":
+            document.location.href = "./index.html#perfis";
             break;
     }
 });

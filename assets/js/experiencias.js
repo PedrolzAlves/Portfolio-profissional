@@ -51,29 +51,11 @@ document.addEventListener("keydown", function (event) {
 });
 
 //Controller
-const rAF = window.mozRequestAnimationFrame || window.requestAnimationFrame;
-
-window.addEventListener('gamepadconnected', function (e) {
-    updateLoop();
+Controle.iniciar({
+    voltar: function () { window.location.href = VOLTAR; },
+    cima: function () { mover(-1); },
+    baixo: function () { mover(1); }
 });
-
-function updateLoop() {
-    let gp = navigator.getGamepads()[0];
-
-    if (gp) {
-        if (gp.buttons[1].pressed) {
-            window.location.href = VOLTAR;
-        } else if (gp.buttons[12].pressed || gp.axes[1] < -0.5) {
-            mover(-1);
-        } else if (gp.buttons[13].pressed || gp.axes[1] > 0.5) {
-            mover(1);
-        }
-    }
-
-    setTimeout(function () {
-        rAF(updateLoop);
-    }, 130);
-}
 
 // Sem rolagem/foco na abertura para não brigar com a animação de entrada
 selecionar(0, false);

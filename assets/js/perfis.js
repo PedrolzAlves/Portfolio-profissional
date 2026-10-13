@@ -117,38 +117,34 @@ document.addEventListener("keydown", function (event) {
 });
 
 //Controller
-const rAF = window.mozRequestAnimationFrame || window.requestAnimationFrame;
-
-window.addEventListener('gamepadconnected', function (e) {
-    updateLoop();
-});
-
-function updateLoop() {
-    let gp = navigator.getGamepads()[0];
-
-    if (gp) {
-        if (telaAtual === "inicio") {
-            // PS ou Start
-            if (gp.buttons[16]?.pressed || gp.buttons[9].pressed) {
-                unlock_page();
-            }
-        } else if (gp.buttons[0].pressed) {
-            entrarPerfil(perfis[perfilAtual]);
-        } else if (gp.buttons[1].pressed) {
-            voltarInicio();
-        } else if (gp.buttons[14].pressed || gp.axes[0] < -0.5) {
-            selecionarPerfil(perfilAtual - 1);
-            play_a();
-        } else if (gp.buttons[15].pressed || gp.axes[0] > 0.5) {
-            selecionarPerfil(perfilAtual + 1);
-            play_a();
-        }
+function controleIniciar() {
+    if (telaAtual === "inicio") {
+        unlock_page();
+        return true;
     }
-
-    setTimeout(function () {
-        rAF(updateLoop);
-    }, 130);
+    return false;
 }
+
+Controle.iniciar({
+    start: controleIniciar,
+    ps: controleIniciar,
+    confirmar: function () {
+        if (!controleIniciar()) entrarPerfil(perfis[perfilAtual]);
+    },
+    voltar: function () {
+        if (telaAtual === "perfis") voltarInicio();
+    },
+    esquerda: function () {
+        if (telaAtual !== "perfis") return;
+        selecionarPerfil(perfilAtual - 1);
+        play_a();
+    },
+    direita: function () {
+        if (telaAtual !== "perfis") return;
+        selecionarPerfil(perfilAtual + 1);
+        play_a();
+    }
+});
 
 if (window.location.hash === "#perfis") {
     abrirPerfis();

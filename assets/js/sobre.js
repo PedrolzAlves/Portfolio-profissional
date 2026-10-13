@@ -58,20 +58,6 @@ document.addEventListener("keydown", function (event) {
 });
 
 //Controller
-const rAF = window.mozRequestAnimationFrame || window.requestAnimationFrame;
-
-window.addEventListener('gamepadconnected', function (e) {
-    updateLoop();
+Controle.iniciar({
+    voltar: function () { window.location.href = VOLTAR; }
 });
-
-function updateLoop() {
-    let gp = navigator.getGamepads()[0];
-
-    if (gp && gp.buttons[1].pressed) {
-        window.location.href = VOLTAR;
-    }
-
-    setTimeout(function () {
-        rAF(updateLoop);
-    }, 130);
-}
