@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio | PedroStation 4</title>
+    <title data-i18n="port.titulo">Portfólio | PedroStation 4</title>
     <meta name="description" content="Projetos de Pedro Luiz: sistemas web em PHP, MySQL e JavaScript."/>
     <meta name="author" content="Pedro Luiz" />
     <link rel="icon" href="./assets/svg/logo.svg" type="image/svg+xml" />
@@ -30,11 +30,12 @@
                   <a href="#"> 
                     <div id="plus" tabindex="0"></div> </a>
                     <div id="info"></div>
-                    <div id="textInfo">Seja bem vindo ao meu portfólio!</div>
+                    <div id="textInfo" data-i18n="port.info">Seja bem vindo ao meu portfólio!</div>
                     <div id="friends">+5</div>
                     <div id="user"></div>
                     <div id="userName">Pedro Luiz</div>
                     <div id="trophies">‎ ‎ ‎ ‎ ‎ ‎  +6</div>
+                    <div class="idiomaHeader" data-idioma></div>
                     <div id="clock" onload="currentTime()"></div>
                 </header>
       
@@ -42,21 +43,21 @@
                     <a href="./index.html#perfis">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame new" tabindex="0"></div>
-                        <div class="gameText">Voltar</div>
-                        <span class="gameTitle">Voltar para a seleção inicial</span>
+                        <div class="gameText" data-i18n="port.voltar">Voltar</div>
+                        <span class="gameTitle" data-i18n="port.voltarTitulo">Voltar para a seleção inicial</span>
                     </div>
                     </a>
                     <!-- Link do GitHub: Comes & Bebs -->
                     <a href="https://github.com/PedrolzAlves/Comes-e-bebs" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame comesBebs" tabindex="0"></div>
-                        <div class="gameText">Abrir no GitHub</div>
+                        <div class="gameText" data-i18n="port.abrirGithub">Abrir no GitHub</div>
                         <span class="gameTitle">Comes &amp; Bebs</span>
                         <div class="projetoDescricao chatBolha">
                             <img src="./assets/img/me.jpg" alt="">
                             <div>
                                 <strong>Comes &amp; Bebs</strong>
-                                <p>Sistema de autoatendimento para lanchonete (TCC SENAI). No totem o cliente monta o pedido, paga e recebe uma senha; no painel da cozinha a equipe acompanha as comandas e o gerente administra o cardápio.</p>
+                                <p data-i18n="proj.comes">Sistema de autoatendimento para lanchonete (TCC SENAI). No totem o cliente monta o pedido, paga e recebe uma senha; no painel da cozinha a equipe acompanha as comandas e o gerente administra o cardápio.</p>
                                 <p class="projetoTecnologias">PHP · MySQL · HTML · CSS · JavaScript</p>
                             </div>
                         </div>
@@ -66,13 +67,13 @@
                     <a href="https://github.com/PedrolzAlves/mapa-puc-minas" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame mapaPuc" tabindex="0"></div>
-                        <div class="gameText">Abrir no GitHub</div>
-                        <span class="gameTitle">Mapa PUC Minas</span>
+                        <div class="gameText" data-i18n="port.abrirGithub">Abrir no GitHub</div>
+                        <span class="gameTitle" data-i18n="proj.mapa.nome">Mapa PUC Minas</span>
                         <div class="projetoDescricao chatBolha">
                             <img src="./assets/img/me.jpg" alt="">
                             <div>
-                                <strong>Mapa PUC Minas</strong>
-                                <p>Mapa interativo das unidades da PUC Minas, com marcadores, filtro de favoritas, lista para navegar entre as unidades e a localização do usuário. Feito para praticar o consumo de APIs.</p>
+                                <strong data-i18n="proj.mapa.nome">Mapa PUC Minas</strong>
+                                <p data-i18n="proj.mapa">Mapa interativo das unidades da PUC Minas, com marcadores, filtro de favoritas, lista para navegar entre as unidades e a localização do usuário. Feito para praticar o consumo de APIs.</p>
                                 <p class="projetoTecnologias">HTML · CSS · JavaScript · Mapbox GL JS</p>
                             </div>
                         </div>
@@ -82,13 +83,13 @@
                     <a href="https://github.com/PedrolzAlves/Pedro-foods" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame restaurante" tabindex="0"></div>
-                        <div class="gameText">Abrir no GitHub</div>
+                        <div class="gameText" data-i18n="port.abrirGithub">Abrir no GitHub</div>
                         <span class="gameTitle">Pedro Foods</span>
                         <div class="projetoDescricao chatBolha">
                             <img src="./assets/img/me.jpg" alt="">
                             <div>
                                 <strong>Pedro Foods</strong>
-                                <p>Sistema de gestão de restaurante: login de funcionários, controle de mesas livres e ocupadas, abertura de contas, registro de pedidos e fechamento da conta com 10% de serviço.</p>
+                                <p data-i18n="proj.restaurante">Sistema de gestão de restaurante: login de funcionários, controle de mesas livres e ocupadas, abertura de contas, registro de pedidos e fechamento da conta com 10% de serviço.</p>
                                 <p class="projetoTecnologias">PHP · MySQL · HTML · CSS</p>
                             </div>
                         </div>
@@ -98,13 +99,13 @@
                     <a href="https://github.com/PedrolzAlves/Sistema-Escola" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame escola" tabindex="0"></div>
-                        <div class="gameText">Abrir no GitHub</div>
-                        <span class="gameTitle">Escola</span>
+                        <div class="gameText" data-i18n="port.abrirGithub">Abrir no GitHub</div>
+                        <span class="gameTitle" data-i18n="proj.escola.nome">Escola</span>
                         <div class="projetoDescricao chatBolha">
                             <img src="./assets/img/me.jpg" alt="">
                             <div>
-                                <strong>Escola</strong>
-                                <p>Cadastro de alunos e consulta por turma, com as turmas carregadas direto do banco de dados. Projeto do SENAI para integrar formulários HTML, PHP e banco relacional.</p>
+                                <strong data-i18n="proj.escola.nome">Escola</strong>
+                                <p data-i18n="proj.escola">Cadastro de alunos e consulta por turma, com as turmas carregadas direto do banco de dados. Projeto do SENAI para integrar formulários HTML, PHP e banco relacional.</p>
                                 <p class="projetoTecnologias">PHP · MySQL · HTML · CSS · JavaScript · Bootstrap</p>
                             </div>
                         </div>
@@ -114,13 +115,13 @@
                     <a href="https://github.com/PedrolzAlves/Oficina-DIW" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame listaTarefas" tabindex="0"></div>
-                        <div class="gameText">Abrir no GitHub</div>
-                        <span class="gameTitle">Lista de Tarefas</span>
+                        <div class="gameText" data-i18n="port.abrirGithub">Abrir no GitHub</div>
+                        <span class="gameTitle" data-i18n="proj.tarefas.nome">Lista de Tarefas</span>
                         <div class="projetoDescricao chatBolha">
                             <img src="./assets/img/me.jpg" alt="">
                             <div>
-                                <strong>Lista de Tarefas</strong>
-                                <p>Aplicação de tarefas com adição, conclusão e remoção de itens, contador de pendentes e concluídas e salvamento no navegador. Feita na oficina de Desenvolvimento de Interfaces Web da PUC Minas.</p>
+                                <strong data-i18n="proj.tarefas.nome">Lista de Tarefas</strong>
+                                <p data-i18n="proj.tarefas">Aplicação de tarefas com adição, conclusão e remoção de itens, contador de pendentes e concluídas e salvamento no navegador. Feita na oficina de Desenvolvimento de Interfaces Web da PUC Minas.</p>
                                 <p class="projetoTecnologias">HTML · CSS · JavaScript · LocalStorage</p>
                             </div>
                         </div>
@@ -129,7 +130,7 @@
                         <a href="https://github.com/PedroLzAlves" target="_blank" rel="noopener noreferrer">
                     <div class="squareGame animated bounceInLeft">
                         <div class="imgGame github" tabindex="0"></div>
-                        <div class="gameText">Abrir</div>
+                        <div class="gameText" data-i18n="port.abrir">Abrir</div>
                         <span class="gameTitle">Github</span>
                     </div>
                          </a>
@@ -138,13 +139,14 @@
                         <a href="#">
                     <div class="squareGame animated bounceInLeft" id="shutdown">
                         <div class="imgGame off" tabindex="0"></div>
-                        <div class="gameText">Desligar</div>
-                        <span class="gameTitle">Encerrar o portifólio</span>
+                        <div class="gameText" data-i18n="port.desligar">Desligar</div>
+                        <span class="gameTitle" data-i18n="port.encerrar">Encerrar o portifólio</span>
                     </div>
                         </a>
                 </div>
 
     <!--========== JAVASCRIPT ===========-->
+    <script src="./assets/js/idioma.js"></script>
     <script src="./assets/js/controle.js"></script>
     <script  src="./assets/js/script.js"></script>
   </body>

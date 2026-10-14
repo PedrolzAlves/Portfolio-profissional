@@ -12,7 +12,7 @@ const campoMensagem = form.elements.mensagem;
 
 function montarEmail() {
     const nome = campoNome.value.trim();
-    const assunto = form.elements.assunto.value.trim() || "Contato pelo portfólio - " + nome;
+    const assunto = form.elements.assunto.value.trim() || Idioma.t("sobre.assuntoPadrao") + nome;
     const corpo = campoMensagem.value.trim() + "\n\n— " + nome;
     return { assunto, corpo };
 }

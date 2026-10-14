@@ -196,7 +196,7 @@ document.addEventListener("keydown", function (event) {
 //Notification
     function showNotification() {
         const title = "Hello World!";
-        const message = "Obrigado por visitar!";
+        const message = Idioma.t("port.notificacao");
         const icon = "./assets/img/icon.png";
 
         const notification = document.createElement("div");
@@ -260,15 +260,15 @@ plusButton.addEventListener('click', function() {
 function timeout() {
     setTimeout(function () {
         if (time === 0) {
-            $("#textInfo").text("Novos projetos disponíveis");
+            $("#textInfo").text(Idioma.t("port.infoProjetos"));
             $("#textInfo").addClass("animated slideInDown");
             time++;
         } else if (time === 1) {
-            $("#textInfo").text("Descrição profissional disponível para visualização");
+            $("#textInfo").text(Idioma.t("port.infoSobre"));
             $("#textInfo").addClass("animated slideInDown");
             time++;
         } else if (time === 2) {
-            $("#textInfo").text("Experiências profissionais disponíveis agora");
+            $("#textInfo").text(Idioma.t("port.infoExp"));
             $("#textInfo").addClass("animated slideInDown");
             time = 0;
         }

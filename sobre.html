@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre mim | PedroStation 4</title>
+    <title data-i18n="sobre.titulo">Sobre mim | PedroStation 4</title>
     <meta name="description" content="Sobre Pedro Luiz: formação, experiência e contato."/>
     <link rel="icon" href="./assets/svg/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/css/style.min.css" />
@@ -32,50 +32,51 @@
 
     <main class="sobre">
       <div class="sobreTopo">
-        <h1 class="sobreTitulo">Sobre mim</h1>
+        <h1 class="sobreTitulo" data-i18n="sobre.h1">Sobre mim</h1>
         <svg class="sobreSimbolos" aria-hidden="true"><use href="#i-ps"/></svg>
+        <div class="idiomaLocal" data-idioma></div>
       </div>
 
       <!-- Apresentação (inspirada na página de jogo da PS Store) -->
       <section class="apresentacao entrada">
         <div class="apresentacaoLateral">
-          <img class="apresentacaoFoto" src="./assets/img/me.jpg" alt="Foto de Pedro Luiz">
+          <img class="apresentacaoFoto" src="./assets/img/me.jpg" alt="Foto de Pedro Luiz" data-i18n-alt="sobre.fotoAlt">
           <a class="botaoDestaque" href="#contato" id="irContato">
-            <span>Falar comigo</span>
+            <span data-i18n="sobre.falar">Falar comigo</span>
             <svg aria-hidden="true"><use href="#i-email"/></svg>
           </a>
-          <span class="abaAtiva">Visão geral</span>
+          <span class="abaAtiva" data-i18n="sobre.visao">Visão geral</span>
         </div>
 
         <div class="apresentacaoInfo">
           <div class="apresentacaoCabecalho">
             <h2 class="apresentacaoNome">Pedro Luiz</h2>
-            <span class="apresentacaoCargo">Desenvolvedor de Sistemas</span>
+            <span class="apresentacaoCargo" data-i18n="sobre.cargo">Desenvolvedor de Sistemas</span>
           </div>
 
           <p class="apresentacaoMeta">
             <span><svg aria-hidden="true"><use href="#i-local"/></svg> Belo Horizonte, MG</span>
-            <span><svg aria-hidden="true"><use href="#i-capelo"/></svg> Ciência da Computação · PUC Minas</span>
-            <span><svg aria-hidden="true"><use href="#i-maleta"/></svg> TI · Difarmig</span>
+            <span><svg aria-hidden="true"><use href="#i-capelo"/></svg> <span data-i18n="sobre.curso">Ciência da Computação · PUC Minas</span></span>
+            <span><svg aria-hidden="true"><use href="#i-maleta"/></svg> <span data-i18n="sobre.trabalho">TI · Difarmig</span></span>
           </p>
 
           <div class="apresentacaoPaineis">
             <div class="painelTexto">
-              <p>
+              <p data-i18n="sobre.p1">
                 Sou estudante de Ciência da Computação na PUC Minas e Técnico em Desenvolvimento de Sistemas
                 pelo SENAI. Hoje atuo no setor de TI da Difarmig, criando e mantendo projetos como APIs web
                 para análises comerciais e aplicativos mobile.
               </p>
-              <p>
+              <p data-i18n="sobre.p2">
                 Gosto de aprender na prática e de transformar ideias em soluções úteis, sempre em busca de
                 novos desafios e oportunidades de crescimento profissional.
               </p>
             </div>
 
             <ul class="painelNumeros">
-              <li><strong>1+</strong><span>Ano de experiência</span></li>
-              <li><strong>11</strong><span>Tecnologias</span></li>
-              <li><strong>2</strong><span>Formações</span></li>
+              <li><strong>1+</strong><span data-i18n="sobre.anos">Ano de experiência</span></li>
+              <li><strong>11</strong><span data-i18n="sobre.tecnologias">Tecnologias</span></li>
+              <li><strong>2</strong><span data-i18n="sobre.formacoes">Formações</span></li>
             </ul>
           </div>
         </div>
@@ -84,13 +85,13 @@
       <!-- Contato (inspirado na tela de mensagens do PS4) -->
       <section class="contato entrada" id="contato">
         <h2 class="contatoTitulo">
-          <img src="./assets/img/me.jpg" alt=""> Fale comigo
+          <img src="./assets/img/me.jpg" alt=""> <span data-i18n="sobre.faleComigo">Fale comigo</span>
         </h2>
 
         <div class="contatoCorpo">
-          <nav class="contatoMenu" aria-label="Contato">
+          <nav class="contatoMenu" aria-label="Contato" data-i18n-aria-label="sobre.contato">
             <button type="button" class="contatoItem ativo" id="focarMensagem">
-              <svg aria-hidden="true"><use href="#i-email"/></svg> Mensagem
+              <svg aria-hidden="true"><use href="#i-email"/></svg> <span data-i18n="sobre.mensagem">Mensagem</span>
             </button>
             <a class="contatoItem" href="https://github.com/PedroLzAlves" target="_blank" rel="noopener noreferrer">
               <svg aria-hidden="true"><use href="#i-github"/></svg> GitHub
@@ -99,7 +100,7 @@
               <svg aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn
             </a>
 
-            <a class="contatoVoltar" href="./index.html#perfis">Voltar aos perfis</a>
+            <a class="contatoVoltar" href="./index.html#perfis" data-i18n="voltarPerfis">Voltar aos perfis</a>
           </nav>
 
           <form class="chat" id="formMensagem">
@@ -108,25 +109,25 @@
                 <img src="./assets/img/me.jpg" alt="">
                 <div>
                   <strong>Pedro Luiz</strong>
-                  <p>Olá! Obrigado pela visita. Deixe sua mensagem abaixo e ela vai direto para o meu e-mail.</p>
+                  <p data-i18n="sobre.ola">Olá! Obrigado pela visita. Deixe sua mensagem abaixo e ela vai direto para o meu e-mail.</p>
                 </div>
               </div>
               <span class="chatSimbolos" aria-hidden="true">△○✕□</span>
             </div>
 
             <div class="chatCampos">
-              <input class="chatCampo" name="nome" placeholder="Seu nome" autocomplete="name" required>
-              <input class="chatCampo" name="assunto" placeholder="Assunto (opcional)">
+              <input class="chatCampo" name="nome" placeholder="Seu nome" data-i18n-placeholder="sobre.nome" autocomplete="name" required>
+              <input class="chatCampo" name="assunto" placeholder="Assunto (opcional)" data-i18n-placeholder="sobre.assunto">
             </div>
 
             <div class="chatEnvio">
-              <textarea class="chatCampo chatMensagem" name="mensagem" rows="3" placeholder="Digite sua mensagem" required></textarea>
-              <button type="submit" class="chatEnviar">Enviar</button>
+              <textarea class="chatCampo chatMensagem" name="mensagem" rows="3" placeholder="Digite sua mensagem" data-i18n-placeholder="sobre.digite" required></textarea>
+              <button type="submit" class="chatEnviar" data-i18n="sobre.enviar">Enviar</button>
             </div>
 
             <p class="chatStatus" id="chatStatus" aria-live="polite" hidden>
-              Abrindo seu aplicativo de e-mail com a mensagem pronta…
-              Não abriu? <a id="linkGmail" href="#" target="_blank" rel="noopener noreferrer">Enviar pelo Gmail</a>
+              <span data-i18n="sobre.abrindo">Abrindo seu aplicativo de e-mail com a mensagem pronta…</span>
+              <span data-i18n="sobre.naoAbriu">Não abriu?</span> <a id="linkGmail" href="#" target="_blank" rel="noopener noreferrer" data-i18n="sobre.gmail">Enviar pelo Gmail</a>
             </p>
           </form>
         </div>
@@ -134,6 +135,7 @@
     </main>
 
     <!--========== JAVASCRIPT ===========-->
+    <script src="./assets/js/idioma.js"></script>
     <script src="./assets/js/controle.js"></script>
     <script src="./assets/js/sobre.js"></script>
   </body>

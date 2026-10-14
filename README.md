@@ -14,6 +14,9 @@
 tradicional, o visitante "liga o console", escolhe um perfil e navega pelas telas de **Sobre mim**, **Portfólio** e
 **Experiências** como se estivesse no menu do PS4, usando mouse, teclado ou controle.
 
+🌐 O site está disponível em **português e inglês**: o botão **PT | EN** no canto superior direito de cada tela troca
+o idioma, e a escolha fica salva para as próximas visitas.
+
 O projeto foi construído a partir do template open source [Ps4-UI](https://github.com/d4v1-sudo/Ps4-UI). A base
 visual do PS4 vem dele, e todo o conteúdo, as telas novas e as adaptações são meus (veja [Créditos](#créditos)).
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experiências | PedroStation 4</title>
+    <title data-i18n="exp.titulo">Experiências | PedroStation 4</title>
     <meta name="description" content="Experiências profissionais, formação acadêmica e habilidades de Pedro Luiz."/>
     <link rel="icon" href="./assets/svg/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/css/style.min.css" />
@@ -32,12 +32,13 @@
     </div>
 
     <main class="exp">
-      <h1 class="expTitulo">Experiências</h1>
+      <div class="idiomaExp" data-idioma></div>
+      <h1 class="expTitulo" data-i18n="exp.h1">Experiências</h1>
 
       <div class="expCorpo">
         <!-- Habilidades -->
         <aside class="habilidades entrada">
-          <h2 class="habTitulo">Habilidades</h2>
+          <h2 class="habTitulo" data-i18n="exp.habilidades">Habilidades</h2>
 
           <ul class="habLista">
             <li class="habGrupo">
@@ -55,7 +56,7 @@
             <li class="habGrupo">
               <div class="habCabecalho">
                 <svg aria-hidden="true"><use href="#i-terminal"/></svg>
-                <span class="habNome">Back-end e Engenharia de Software</span>
+                <span class="habNome" data-i18n="exp.backend">Back-end e Engenharia de Software</span>
                 <span class="habQtd">6</span>
               </div>
               <ul class="tags">
@@ -70,7 +71,7 @@
             <li class="habGrupo">
               <div class="habCabecalho">
                 <svg aria-hidden="true"><use href="#i-banco"/></svg>
-                <span class="habNome">Banco de Dados</span>
+                <span class="habNome" data-i18n="exp.banco">Banco de Dados</span>
                 <span class="habQtd">2</span>
               </div>
               <ul class="tags">
@@ -80,32 +81,32 @@
             </li>
           </ul>
 
-          <a class="expVoltar" href="./index.html#perfis">Voltar aos perfis</a>
+          <a class="expVoltar" href="./index.html#perfis" data-i18n="voltarPerfis">Voltar aos perfis</a>
         </aside>
 
         <!-- Histórico -->
-        <section class="historico entrada" aria-label="Histórico">
+        <section class="historico entrada" aria-label="Histórico" data-i18n-aria-label="exp.historico">
           <h2 class="secaoRotulo">
-            <svg aria-hidden="true"><use href="#i-maleta"/></svg> Experiência profissional
+            <svg aria-hidden="true"><use href="#i-maleta"/></svg> <span data-i18n="exp.profissional">Experiência profissional</span>
           </h2>
 
           <article class="cartao" tabindex="0">
             <img class="cartaoImg" style="--fundo: #009fe3" src="./assets/img/dif.jpg" alt="Difarmig">
             <div class="cartaoInfo">
-              <h3 class="cartaoTitulo">Auxiliar administrativo</h3>
+              <h3 class="cartaoTitulo" data-i18n="exp.auxiliar">Auxiliar administrativo</h3>
               <p class="cartaoSub">Difarmig Distribuidora Hospitalar</p>
               <p class="cartaoMeta">
-                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> mar. de 2026 – o momento</span>
-                <span><svg aria-hidden="true"><use href="#i-local"/></svg> Belo Horizonte, MG · Presencial</span>
+                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> <span data-i18n="exp.auxiliar.data">mar. de 2026 – o momento</span></span>
+                <span><svg aria-hidden="true"><use href="#i-local"/></svg> <span data-i18n="exp.presencial">Belo Horizonte, MG · Presencial</span></span>
               </p>
-              <p class="cartaoDesc">
+              <p class="cartaoDesc" data-i18n="exp.auxiliar.desc">
                 Auxílio ao setor de TI da empresa, trabalhando em criações, manutenções e atualizações de
                 projetos de computação desenvolvidos na empresa, como APIs web para análises comerciais e
                 aplicativos mobile.
               </p>
               <ul class="tags">
-                <li>Meio período</li>
-                <li>Tecnologia da informação</li>
+                <li data-i18n="tag.meioPeriodo">Meio período</li>
+                <li data-i18n="tag.ti">Tecnologia da informação</li>
               </ul>
             </div>
           </article>
@@ -113,44 +114,44 @@
           <article class="cartao" tabindex="0">
             <img class="cartaoImg" style="--fundo: #009fe3" src="./assets/img/dif.jpg" alt="Difarmig">
             <div class="cartaoInfo">
-              <h3 class="cartaoTitulo">Jovem Aprendiz</h3>
+              <h3 class="cartaoTitulo" data-i18n="exp.aprendiz">Jovem Aprendiz</h3>
               <p class="cartaoSub">Difarmig Distribuidora Hospitalar</p>
               <p class="cartaoMeta">
-                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> mar. de 2025 – mar. de 2026 · 1 ano e 1 mês</span>
-                <span><svg aria-hidden="true"><use href="#i-local"/></svg> Belo Horizonte, MG · Presencial</span>
+                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> <span data-i18n="exp.aprendiz.data">mar. de 2025 – mar. de 2026 · 1 ano e 1 mês</span></span>
+                <span><svg aria-hidden="true"><use href="#i-local"/></svg> <span data-i18n="exp.presencial">Belo Horizonte, MG · Presencial</span></span>
               </p>
-              <p class="cartaoDesc">
+              <p class="cartaoDesc" data-i18n="exp.aprendiz.desc">
                 Gestão de DP &amp; Benefícios: responsável pelo controle, organização e arquivo de documentos de
                 colaboradores, além do suporte na gestão e distribuição de benefícios corporativos.
               </p>
               <ul class="tags">
-                <li>Aprendiz</li>
-                <li>Processos administrativos</li>
-                <li>Contas a pagar e a receber</li>
+                <li data-i18n="tag.aprendiz">Aprendiz</li>
+                <li data-i18n="tag.processos">Processos administrativos</li>
+                <li data-i18n="tag.contas">Contas a pagar e a receber</li>
               </ul>
             </div>
           </article>
 
           <h2 class="secaoRotulo">
-            <svg aria-hidden="true"><use href="#i-capelo"/></svg> Formação acadêmica
+            <svg aria-hidden="true"><use href="#i-capelo"/></svg> <span data-i18n="exp.formacao">Formação acadêmica</span>
           </h2>
 
           <article class="cartao" tabindex="0">
             <img class="cartaoImg" style="--fundo: linear-gradient(90deg, #78b8e6, #5da7d6 10%, #3d97c9 20%, #1a8abc 30%, #0a7cae 40%, #0072a1 50%, #006897 60%, #00618e 70%, #015987 80%, #005683 90%, #00537f)" src="./assets/img/puc.jpg" alt="PUC Minas">
             <div class="cartaoInfo">
               <h3 class="cartaoTitulo">PUC Minas</h3>
-              <p class="cartaoSub">Ciência da Computação</p>
+              <p class="cartaoSub" data-i18n="exp.puc.curso">Ciência da Computação</p>
               <p class="cartaoMeta">
-                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> fev. de 2026 – dez. de 2029</span>
+                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> <span data-i18n="exp.puc.data">fev. de 2026 – dez. de 2029</span></span>
                 <span><svg aria-hidden="true"><use href="#i-local"/></svg> Coração Eucarístico, BH</span>
               </p>
-              <p class="cartaoDesc">
+              <p class="cartaoDesc" data-i18n="exp.puc.desc">
                 Estudante no segundo período em Ciência da Computação na unidade PUC Minas - Coração Eucarístico.
               </p>
               <ul class="tags">
-                <li>Graduação</li>
-                <li>Tecnologia da informação</li>
-                <li>Lógica</li>
+                <li data-i18n="tag.graduacao">Graduação</li>
+                <li data-i18n="tag.ti">Tecnologia da informação</li>
+                <li data-i18n="tag.logica">Lógica</li>
               </ul>
             </div>
           </article>
@@ -159,18 +160,18 @@
             <img class="cartaoImg" style="--fundo: #210d40" src="./assets/img/senai.jpg" alt="Faculdade SENAI">
             <div class="cartaoInfo">
               <h3 class="cartaoTitulo">SENAI CTTI MG</h3>
-              <p class="cartaoSub">Técnico em Desenvolvimento de Sistemas</p>
+              <p class="cartaoSub" data-i18n="exp.senai.curso">Técnico em Desenvolvimento de Sistemas</p>
               <p class="cartaoMeta">
-                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> mar. de 2024 – ago. de 2025</span>
+                <span><svg aria-hidden="true"><use href="#i-calendario"/></svg> <span data-i18n="exp.senai.data">mar. de 2024 – ago. de 2025</span></span>
               </p>
-              <p class="cartaoDesc">
+              <p class="cartaoDesc" data-i18n="exp.senai.desc">
                 Formado em 2025 como Técnico em Análise e Desenvolvimento de Sistemas, desenvolvendo conceitos de lógica
                 de programação, desenvolvimento básico em back-end, web e modelagem de banco de dados e documentação.                
               </p>
               <ul class="tags">
-                <li>Técnico</li>
-                <li>Tecnologia da informação</li>
-                <li>Lógica</li>
+                <li data-i18n="tag.tecnico">Técnico</li>
+                <li data-i18n="tag.ti">Tecnologia da informação</li>
+                <li data-i18n="tag.logica">Lógica</li>
               </ul>
             </div>
           </article>
@@ -179,6 +180,7 @@
     </main>
 
     <!--========== JAVASCRIPT ===========-->
+    <script src="./assets/js/idioma.js"></script>
     <script src="./assets/js/controle.js"></script>
     <script src="./assets/js/experiencias.js"></script>
   </body>
