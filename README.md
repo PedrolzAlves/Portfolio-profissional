@@ -1,6 +1,12 @@
 # 🎮 PedroStation 4: portfólio profissional no estilo PS4
 
-![PedroStation 4](screenshot.png)
+[![Acessar o site](https://img.shields.io/badge/Acessar%20o%20site-pedrostation.vercel.app-0e6cc4?style=for-the-badge&logo=vercel&logoColor=white)](https://pedrostation.vercel.app/)
+
+### 👉 [pedrostation.vercel.app](https://pedrostation.vercel.app/)
+
+[![PedroStation 4](screenshot.png)](https://pedrostation.vercel.app/)
+[![PedroStation 4](screenshot2.png)](https://pedrostation.vercel.app/)
+[![PedroStation 4](screenshot3.png)](https://pedrostation.vercel.app/)
 
 ## Descrição
 
@@ -67,7 +73,7 @@ página depois do primeiro botão apertado com ela aberta.
 - **JavaScript**, com [jQuery](https://jquery.com/) na tela de Portfólio
 - **Gamepad API** para navegação por controle
 - [Boxicons](https://boxicons.com/) para os ícones
-- **GitHub Actions** + **GitHub Pages** para o deploy automático (`.github/workflows/static.yml`)
+- **Vercel** para hospedagem e deploy automático
 
 ## Estrutura
 
@@ -87,7 +93,8 @@ Portfolio-profissional/
 
 ## Como rodar
 
-Por ser um site estático, não precisa instalar nada:
+O site está no ar em **[pedrostation.vercel.app](https://pedrostation.vercel.app/)**. Para rodar localmente, como é
+um site estático, não precisa instalar nada:
 
 1. Clone o repositório:
 
@@ -97,7 +104,7 @@ Por ser um site estático, não precisa instalar nada:
 
 2. Abra o arquivo `index.html` no navegador. Se preferir, use a extensão **Live Server** do VS Code.
 
-A cada push na branch `master`, o GitHub Actions publica o site no GitHub Pages automaticamente.
+A cada push na branch `main`, a Vercel publica a nova versão do site automaticamente.
 
 ## Créditos
 
@@ -126,6 +133,7 @@ Sony Interactive Entertainment. Este portfólio não tem qualquer vínculo com a
 
 ## Contato
 
+- Portfólio: [pedrostation.vercel.app](https://pedrostation.vercel.app/)
 - GitHub: [@PedroLzAlves](https://github.com/PedroLzAlves)
 - LinkedIn: [pedroluizalves](https://www.linkedin.com/in/pedroluizalves/)
 - E-mail: pedroluiz.alves06@gmail.com
