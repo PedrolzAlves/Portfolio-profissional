@@ -242,6 +242,12 @@ plusButton.addEventListener('click', function() {
   showNotification();
 });
 
+// Mantém a navegação por controle/teclado a partir do item tocado ou clicado
+document.addEventListener("focusin", function (event) {
+    const indice = Array.from(focusable).indexOf(event.target);
+    if (indice > 0) current = indice;
+});
+
 
 		// Assign handleMouse to mouse movement events
 		// document.onmousemove = handleMouse;
@@ -282,19 +288,6 @@ function timeout() {
 
 
 
-	$(".squareGame").hover(
-		function(){
-			$(this).find('.gameText').show();
-			$(this).find('.gameTitle').show();
-			$(this).find('#store').show();
-		},
-		function(){
-			$(this).find('.gameText').hide();
-			$(this).find('.gameTitle').hide();
-			$(this).find('#store').hide();
-		}
-	);
-
 // Melhoria para o focus nos jogos
 document.getElementById("games").addEventListener("focusin", function (event) {
   const target = event.target;
@@ -321,7 +314,10 @@ document.getElementById("games").addEventListener("focusout", function (event) {
 });
 
 // Melhoria na exibição das imagens dos jogos
-$(".squareGame").hover(
+// Só com mouse: no celular o hover "engoliria" o primeiro toque (iOS) e a seleção é pelo foco
+$(".squareGame").filter(function () {
+  return window.matchMedia("(hover: hover)").matches;
+}).hover(
   function () {
     $(this).find('.gameText').show();
     $(this).find('.gameTitle').show();
@@ -336,6 +332,34 @@ $(".squareGame").hover(
   }
 );
 
+
+// Toque: o primeiro toque num projeto só seleciona (mostra título e descrição),
+// o segundo toque no mesmo projeto abre. Mouse e teclado continuam abrindo direto.
+(function () {
+    const games = document.getElementById("games");
+    if (!games) return;
+
+    let ultimoToque = false;
+    let selecionadoAntes = null; // item em foco antes do toque (o navegador já foca ao encostar)
+    document.addEventListener("pointerdown", function (event) {
+        ultimoToque = event.pointerType === "touch" || event.pointerType === "pen";
+        selecionadoAntes = document.activeElement;
+    }, true);
+
+    // Captura: roda antes do clique do #shutdown e da navegação do link
+    games.addEventListener("click", function (event) {
+        if (!ultimoToque) return;
+        const quadro = event.target.closest(".squareGame");
+        const img = quadro && quadro.querySelector(".imgGame");
+        if (!img || selecionadoAntes === img) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        selecionadoAntes = img;
+        img.focus({ preventScroll: true });
+        img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }, true);
+})();
 
 // Rolagem lateral: ao levar o mouse para a borda da tela, os projetos
 // fora do campo de visão vão aparecendo. Quanto mais perto da borda, mais rápido.
@@ -364,7 +388,9 @@ $(".squareGame").hover(
         requestAnimationFrame(rolar);
     }
 
-    document.addEventListener("mousemove", function (event) {
+    // Só com mouse: no toque o navegador simula movimentos e a tela rolaria sozinha
+    document.addEventListener("pointermove", function (event) {
+        if (event.pointerType !== "mouse") return;
         const borda = larguraBorda();
         const x = event.clientX;
 

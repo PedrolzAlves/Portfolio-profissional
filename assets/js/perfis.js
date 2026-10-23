@@ -39,6 +39,7 @@ function abrirPerfis() {
     fundoAnimado.hidden = false;
     telaPerfis.hidden = false;
     telaAtual = "perfis";
+    document.body.classList.remove("aguardandoStart");
     perfisAbertosEm = Date.now();
     selecionarPerfil(perfilAtual);
 }
@@ -55,6 +56,7 @@ function voltarInicio() {
     fundoAnimado.hidden = true;
     imagem.style.display = "";
     mensagem.style.display = "block";
+    document.body.classList.add("aguardandoStart");
     tempoAcabou = true;
     telaAtual = "inicio";
 }
@@ -81,6 +83,12 @@ perfis.forEach((perfil, n) => {
         selecionarPerfil(n);
         entrarPerfil(perfil);
     });
+});
+
+// Toque/clique em qualquer lugar da tela inicial também libera (exceto no botão de idioma)
+document.addEventListener("click", function (event) {
+    if (telaAtual !== "inicio" || event.target.closest(".botaoIdioma")) return;
+    unlock_page();
 });
 
 //Navigate using keyboard
@@ -153,5 +161,6 @@ if (window.location.hash === "#perfis") {
     setTimeout(function () {
         tempoAcabou = true;
         mensagem.style.display = "block";
+        document.body.classList.add("aguardandoStart");
     }, TEMPO_LOGO * 1000);
 }

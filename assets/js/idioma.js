@@ -14,7 +14,8 @@ const Idioma = (function () {
         "voltarPerfis": "Back to profiles",
 
         // Tela inicial e perfis
-        "idx.aperte": "Press Start or Space",
+        "idx.aperte": "Press Start, Space or click the screen",
+        "idx.toque": "Tap the screen to start",
         "idx.bemvindo": "Welcome back to PedroStation",
         "idx.sub": "FOLIOSHOCK™4 online portfolio connected.<br>\n          Welcome to my portfolio. Select an option to enter.",
         "perfil.sobre": "About me",

@@ -60,11 +60,38 @@ img {
     transform: translate(-50%, -50%);
     font-size: 17px;
     font-family: 'ps4', sans-serif;
+    white-space: nowrap;
     opacity: 1;
+}
+
+/* Tela inicial liberada: mãozinha indicando que o clique entra */
+body.aguardandoStart {
+    cursor: pointer;
+}
+
+/* Tela inicial: o aviso muda conforme o aparelho (teclado/controle ou toque) */
+.soToque {
+    display: none;
+}
+
+@media (hover: none) {
+    .soTeclado { display: none; }
+    .soToque { display: inline; }
 }
 
 [hidden] {
     display: none !important;
+}
+
+/* Toque: sem o flash azul ao tocar e sem a espera do zoom por duplo toque */
+body {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+a, button, input, textarea, [tabindex] {
+    touch-action: manipulation;
 }
 
 /* Seleção de Perfil */
@@ -75,6 +102,7 @@ img {
     z-index: 100;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     background: linear-gradient(180deg, rgba(0, 10, 40, .55) 0%, rgba(0, 20, 70, .35) 100%);
 }
 
@@ -188,8 +216,19 @@ img {
     opacity: .8;
 }
 
+/* Telas pequenas ou baixas (celular): a logo entra no fluxo para não cobrir o título */
+@media (max-width: 600px), (max-height: 500px) {
+    .perfisLogo { position: static; padding: 1em 16px 0; font-size: .55em; }
+    .perfisConteudo { padding: 1.5em 16px 2em; }
+}
+
+@media (max-height: 500px) {
+    .perfisTitulo { margin-bottom: .6em; font-size: 1.3em; }
+    .perfisSubtitulo { margin-bottom: 1em; }
+    .perfil { width: 7.5em; }
+}
+
 @media (max-width: 600px) {
-    .perfisLogo { top: 1em; left: 1em; font-size: .7em; }
     .perfisTitulo { font-size: 1.2em; }
     .perfisSubtitulo { font-size: .85em; text-align: center; }
     .perfisLista { gap: .8em; }
@@ -308,10 +347,12 @@ header div{
 	z-index: 99;
 }
 
-/* Em telas de toque não há mouse para a rolagem pela borda: libera o arraste lateral */
+/* Em telas de toque não há mouse para a rolagem pela borda: libera o arraste lateral
+   (e o vertical, para celulares deitados verem a descrição abaixo do projeto) */
 @media (hover: none) {
     body.paginaPortfolio {
         overflow-x: auto;
+        overflow-y: auto;
     }
 }
 
@@ -328,15 +369,31 @@ header div{
 	transition: 0.3s ease;
 }
 
-.squareGame:hover, .squareGame:focus, #games .squareGame:focus-within{
+.squareGame:focus, #games .squareGame:focus-within{
     height: 16.5em;
     width: 15em;
     border: 3px solid white;
     cursor: pointer;
 }
 
-.squareGame:hover .imgGame{
-	height: 85%;
+/* Hover só com mouse: no toque a seleção é feita pelo foco (primeiro toque seleciona, o segundo abre) */
+@media (hover: hover) {
+    .squareGame:hover{
+        height: 16.5em;
+        width: 15em;
+        border: 3px solid white;
+        cursor: pointer;
+    }
+
+    .squareGame:hover .imgGame{
+        height: 85%;
+    }
+
+    .squareGame:hover .projetoDescricao{
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
 }
 
 .imgGame{
@@ -549,7 +606,6 @@ header div{
 	pointer-events: none;
 }
 
-.squareGame:hover .projetoDescricao,
 .squareGame:focus-within .projetoDescricao{
 	opacity: 1;
 	visibility: visible;
@@ -562,6 +618,127 @@ header div{
 
 .projetoTecnologias{
 	color: rgba(255, 255, 255, .75);
+}
+
+/* Barra do topo em telas menores: as posições fixas só cabem em monitores largos */
+@media (max-width: 1600px) {
+    header {
+        display: flex;
+        align-items: center;
+        gap: .6em;
+        top: 0;
+        padding: 0 12px;
+    }
+
+    #info, #textInfo, #friends, #user, #userName, #trophies {
+        left: 0;
+    }
+
+    #plus, #info, #friends, #user, #trophies {
+        flex: none;
+        height: 2.6em;
+    }
+
+    #textInfo {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #userName {
+        width: auto;
+        white-space: nowrap;
+    }
+
+    header .idiomaHeader,
+    #clock {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    #friends, #trophies {
+        display: none;
+    }
+}
+
+/* Celular em pé: quadros menores e a descrição do projeto num painel fixo embaixo */
+@media (max-width: 700px) {
+    header {
+        font-size: 15px;
+    }
+
+    #info, #textInfo {
+        display: none;
+    }
+
+    #user {
+        width: 2.2em;
+    }
+
+    #userName {
+        flex: 1;
+        min-width: 0;
+        font-size: 17px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #clock {
+        font-size: 18px;
+    }
+
+    #games {
+        top: 0;
+        padding: 4.5em 16px 1.5em;
+    }
+
+    .squareGame {
+        width: 7.5em;
+        height: 7.5em;
+    }
+
+    .squareGame:focus, #games .squareGame:focus-within {
+        width: 9.5em;
+        height: 11em;
+    }
+
+    #games .squareGame:focus-within .imgGame {
+        height: calc(100% - 2.4em);
+    }
+
+    /* O título já aparece no painel da descrição (ou no texto do próprio quadro) */
+    .gameTitle {
+        display: none !important;
+    }
+
+    .projetoDescricao {
+        position: fixed;
+        top: auto;
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        width: auto;
+        font-size: 15px;
+        transform: translateY(.5em);
+    }
+
+    .notification-container {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        max-width: none;
+    }
+}
+
+/* Celulares estreitos: sem o ícone de usuário para o nome caber inteiro */
+@media (max-width: 420px) {
+    #user {
+        display: none;
+    }
 }
 
 .github{
@@ -750,14 +927,17 @@ header div{
 
 /* Experiências */
 
+/* dvh: no celular desconta a barra de endereço do navegador */
 .paginaExp {
     height: 100vh;
+    height: 100dvh;
 }
 
 .exp {
     position: relative;
     z-index: 100;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
 }
@@ -995,6 +1175,7 @@ header div{
     .exp {
         height: auto;
         min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .expTitulo {
@@ -1486,6 +1667,33 @@ header div{
 
     .chatEnviar {
         padding: .7em;
+    }
+
+    /* Espaço para os símbolos △○✕□ não ficarem por cima do balão */
+    .chatHistorico {
+        min-height: 0;
+        padding-bottom: 3em;
+    }
+}
+
+@media (max-width: 600px) {
+    .sobreTitulo {
+        font-size: 1.7em;
+        white-space: nowrap;
+    }
+
+    .sobreSimbolos {
+        width: 2em;
+        height: 2em;
+    }
+
+    /* Local, curso e trabalho um embaixo do outro, sem os separadores */
+    .apresentacaoMeta {
+        flex-direction: column;
+    }
+
+    .apresentacaoMeta > span {
+        border-right: none;
     }
 }
 
