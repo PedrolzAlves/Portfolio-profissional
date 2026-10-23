@@ -665,7 +665,7 @@ header div{
     }
 }
 
-/* Celular em pé: quadros menores e a descrição do projeto num painel fixo embaixo */
+/* Celular em pé: barra do topo compacta */
 @media (max-width: 700px) {
     header {
         font-size: 15px;
@@ -691,23 +691,94 @@ header div{
         font-size: 18px;
     }
 
+    .notification-container {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        max-width: none;
+    }
+}
+
+/* Celular (em pé ou deitado): a página fica parada e só a fileira de projetos rola.
+   O selecionado (classe .selecionado, controlada pelo script.js) é sempre o primeiro à vista;
+   a descrição dele fica num painel fixo embaixo, que ocupa toda a parte de baixo ao ser tocado. */
+@media (max-width: 700px), (hover: none) and (max-height: 500px) {
+    body.paginaPortfolio {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
     #games {
+        --quadro: 8.5em;
+        position: fixed;
         top: 0;
-        padding: 4.5em 16px 1.5em;
+        left: 0;
+        right: 0;
+        width: auto;
+        padding: 4.5em 16px 1em;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 16px;
+        scrollbar-width: none;
     }
 
-    .squareGame {
-        width: 7.5em;
-        height: 7.5em;
+    #games::-webkit-scrollbar {
+        display: none;
     }
 
-    .squareGame:focus, #games .squareGame:focus-within {
-        width: 9.5em;
-        height: 11em;
+    /* Espaço no fim para o último projeto também poder ser o primeiro à vista */
+    #games::after {
+        content: "";
+        display: inline-block;
+        width: calc(100vw - var(--quadro) - 32px);
     }
 
+    /* A animação de entrada mexe no transform; com "fill-mode: both" ela continua valendo
+       depois de terminar e o quadro vira a referência do painel fixo (que ia parar em cima dele) */
+    #games .squareGame.animated {
+        animation-fill-mode: backwards;
+    }
+
+    /* Todos com a mesma largura: a fileira não "pula" enquanto a seleção muda */
+    #games .squareGame,
+    #games .squareGame:focus-within {
+        width: var(--quadro);
+        height: var(--quadro);
+        border: none;
+        scroll-snap-align: start;
+    }
+
+    #games .squareGame.selecionado {
+        height: calc(var(--quadro) + 2.5em);
+        border: 3px solid white;
+    }
+
+    #games .squareGame .imgGame,
     #games .squareGame:focus-within .imgGame {
+        height: 100%;
+    }
+
+    #games .squareGame.selecionado .imgGame {
         height: calc(100% - 2.4em);
+    }
+
+    #games .imgGame:focus {
+        outline: none;
+    }
+
+    #games .gameText {
+        display: none !important;
+    }
+
+    #games .selecionado .gameText {
+        display: block !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     /* O título já aparece no painel da descrição (ou no texto do próprio quadro) */
@@ -722,15 +793,71 @@ header div{
         right: 16px;
         bottom: calc(16px + env(safe-area-inset-bottom, 0px));
         width: auto;
+        max-height: calc(100vh - var(--topoDescricao, 50vh) - 16px);
+        max-height: calc(100dvh - var(--topoDescricao, 50dvh) - 16px);
+        overflow-y: auto;
         font-size: 15px;
+        cursor: pointer;
         transform: translateY(.5em);
     }
 
-    .notification-container {
-        top: 12px;
-        left: 12px;
-        right: 12px;
+    /* Só a descrição do selecionado aparece (nem foco nem hover mostram outra) */
+    #games .squareGame:focus-within .projetoDescricao,
+    #games .squareGame:hover .projetoDescricao {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(.5em);
+        pointer-events: none;
+    }
+
+    #games .squareGame.selecionado .projetoDescricao {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    /* Puxador indicando que o painel abre */
+    .projetoDescricao::before {
+        content: "";
+        position: absolute;
+        top: .45em;
+        left: 50%;
+        width: 2.6em;
+        height: 4px;
+        margin-left: -1.3em;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, .5);
+    }
+
+    /* Painel aberto: toda a parte de baixo da tela, logo abaixo da fileira */
+    #games.descricaoAberta .projetoDescricao {
+        top: var(--topoDescricao, 50%);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: none;
+        padding: 1.8em 16px calc(1.2em + env(safe-area-inset-bottom, 0px));
+        font-size: 17px;
+        background: rgba(0, 10, 60, .75);
+    }
+
+    #games.descricaoAberta .projetoDescricao.chatBolha {
         max-width: none;
+    }
+}
+
+/* Celular deitado: quadros menores para sobrar espaço para a descrição */
+@media (hover: none) and (max-height: 500px) {
+    #games {
+        --quadro: 6.5em;
+        padding-top: 3.8em;
+    }
+
+    /* Texto menor no quadro estreito, mantendo a mesma altura da faixa (2.4em do quadro) */
+    #games .gameText {
+        font-size: .85em;
+        line-height: 2.82em;
     }
 }
 

@@ -6,6 +6,42 @@
   and
   https://codepen.io/Pixmy/pen/qaYQoV
 */
+
+//Audios (um elemento por som, reaproveitado: assim ele também toca durante o arraste no celular)
+const sons = {
+    navegar: new Audio('./assets/js/navigate.mp3'),
+    desligar: new Audio('./assets/js/shutdown.mp3'),
+    recompensa: new Audio('./assets/js/reward.mp3')
+};
+
+function tocar(som) {
+    som.muted = false;
+    som.currentTime = 0;
+    som.play().catch(function () {});
+}
+
+function play_a() { tocar(sons.navegar); }
+function play_c() { tocar(sons.desligar); }
+function play_d() { tocar(sons.recompensa); }
+
+// O iOS só toca som fora de um toque (ex.: ao arrastar a fileira) se aquele elemento
+// já tocou dentro de um toque: no primeiro toque os sons são "destravados" em silêncio
+function destravarSons() {
+    Object.values(sons).forEach(function (som) {
+        som.muted = true;
+        som.play().then(function () {
+            document.removeEventListener("touchend", destravarSons);
+            // Se um som de verdade começou nesse meio-tempo, ele já tirou o mudo: deixa tocar
+            if (som.muted) {
+                som.pause();
+                som.currentTime = 0;
+                som.muted = false;
+            }
+        }).catch(function () { som.muted = false; });
+    });
+}
+document.addEventListener("touchend", destravarSons);
+
 $(document).ready(function(){
 		$(".gameText").hide();
 		$('.gameTitle').hide();
@@ -49,21 +85,6 @@ currentTime();
 let current = 1;
 let focusable = document.querySelectorAll('a.href, [tabindex], [tabindex]:not([tabindex="-1"])');
 
-//Audios
-function play_a() {
-    var audio = new Audio('./assets/js/navigate.mp3');
-    audio.play();
-}
-    
-function play_c() {
-    var audio = new Audio('./assets/js/shutdown.mp3');
-    audio.play();
-}
-    
-function play_d() {
-    var audio = new Audio('./assets/js/reward.mp3');
-    audio.play();
-}
 // event listener for vibration button
 const btnVibration = document.querySelector('#vibration');
 if (btnVibration) {
@@ -335,9 +356,17 @@ $(".squareGame").filter(function () {
 
 // Toque: o primeiro toque num projeto só seleciona (mostra título e descrição),
 // o segundo toque no mesmo projeto abre. Mouse e teclado continuam abrindo direto.
+// No celular a página fica parada e só a fileira de projetos rola: o selecionado é
+// sempre o primeiro projeto à vista, e tocar na descrição abre/fecha o painel embaixo.
 (function () {
     const games = document.getElementById("games");
     if (!games) return;
+
+    // Mesma condição do CSS da fileira do celular
+    const celular = window.matchMedia("(max-width: 700px), (hover: none) and (max-height: 500px)");
+    const quadros = Array.from(games.querySelectorAll(".squareGame"));
+    let selecionado = null;
+    let destino = null; // quadro tocado: enquanto a fileira rola até ele, não troca a seleção no caminho
 
     let ultimoToque = false;
     let selecionadoAntes = null; // item em foco antes do toque (o navegador já foca ao encostar)
@@ -346,11 +375,78 @@ $(".squareGame").filter(function () {
         selecionadoAntes = document.activeElement;
     }, true);
 
+    function selecionar(quadro, comSom) {
+        if (quadro === selecionado) return;
+        if (selecionado) selecionado.classList.remove("selecionado");
+        selecionado = quadro;
+        quadro.classList.add("selecionado");
+        if (comSom) play_a();
+    }
+
+    function margemEsquerda() {
+        return parseFloat(getComputedStyle(games).paddingLeft) || 0;
+    }
+
+    function primeiroAVista() {
+        const inicio = games.scrollLeft + margemEsquerda();
+        return quadros.find((q) => q.offsetLeft + q.offsetWidth / 2 > inicio) || quadros[quadros.length - 1];
+    }
+
+    function rolarAte(quadro) {
+        destino = quadro;
+        games.scrollTo({ left: quadro.offsetLeft - margemEsquerda(), behavior: "smooth" });
+        setTimeout(function () { destino = null; }, 1000);
+    }
+
+    // O painel da descrição começa logo abaixo da fileira
+    function posicionarDescricao() {
+        games.style.setProperty("--topoDescricao", Math.round(games.getBoundingClientRect().bottom) + "px");
+    }
+
+    function prepararCelular() {
+        if (!celular.matches) return;
+        selecionar(primeiroAVista(), false);
+        posicionarDescricao();
+    }
+
+    let agendado = false;
+    games.addEventListener("scroll", function () {
+        if (!celular.matches || agendado) return;
+        agendado = true;
+        requestAnimationFrame(function () {
+            agendado = false;
+            const quadro = primeiroAVista();
+            if (destino) {
+                if (quadro === destino) destino = null;
+                return;
+            }
+            selecionar(quadro, true);
+        });
+    }, { passive: true });
+
     // Captura: roda antes do clique do #shutdown e da navegação do link
     games.addEventListener("click", function (event) {
         if (!ultimoToque) return;
         const quadro = event.target.closest(".squareGame");
-        const img = quadro && quadro.querySelector(".imgGame");
+        if (!quadro) return;
+
+        if (celular.matches) {
+            if (event.target.closest(".projetoDescricao")) {
+                event.preventDefault();
+                event.stopPropagation();
+                games.classList.toggle("descricaoAberta");
+                play_a();
+                return;
+            }
+            if (quadro === selecionado) return; // segundo toque: abre
+            event.preventDefault();
+            event.stopPropagation();
+            selecionar(quadro, true);
+            rolarAte(quadro);
+            return;
+        }
+
+        const img = quadro.querySelector(".imgGame");
         if (!img || selecionadoAntes === img) return;
 
         event.preventDefault();
@@ -358,7 +454,17 @@ $(".squareGame").filter(function () {
         selecionadoAntes = img;
         img.focus({ preventScroll: true });
         img.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        play_a();
     }, true);
+
+    prepararCelular();
+    window.addEventListener("resize", prepararCelular);
+    // O quadro selecionado cresce com transição: mede de novo quando ela termina
+    games.addEventListener("transitionend", function (event) {
+        if (celular.matches && event.propertyName === "height" && event.target === selecionado) {
+            posicionarDescricao();
+        }
+    });
 })();
 
 // Rolagem lateral: ao levar o mouse para a borda da tela, os projetos

@@ -25,9 +25,20 @@ function mover(passo) {
     if (atual !== anterior) play_a();
 }
 
+// Toque: como no teclado, trocar de cartão faz o som de navegação
+// (guarda o selecionado ao encostar o dedo, antes do foco já trocar a seleção)
+let atualAntesDoToque = null;
+
 cartoes.forEach((cartao, n) => {
     cartao.addEventListener("mouseenter", () => selecionar(n, false));
     cartao.addEventListener("focus", () => selecionar(n, false));
+    cartao.addEventListener("pointerdown", (event) => {
+        atualAntesDoToque = event.pointerType === "mouse" ? null : atual;
+    });
+    cartao.addEventListener("click", () => {
+        if (atualAntesDoToque !== null && atualAntesDoToque !== n) play_a();
+        atualAntesDoToque = null;
+    });
 });
 
 //Navigate using keyboard
