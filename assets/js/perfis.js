@@ -22,16 +22,9 @@ let tempoAcabou = false;
 let perfilAtual = 1; // Portfólio
 let perfisAbertosEm = 0;
 
-//Audios
-function play_a() {
-    var audio = new Audio('./assets/js/navigate.mp3');
-    audio.play();
-}
-
-function play_b() {
-    var audio = new Audio('./assets/js/startup.mp3');
-    audio.play();
-}
+//Audios (sons.js)
+function play_a() { Sons.tocar("navegar"); }
+function play_b() { Sons.tocar("iniciar"); }
 
 function abrirPerfis() {
     imagem.style.display = "none";
@@ -71,8 +64,8 @@ function entrarPerfil(perfil) {
     const destino = DESTINOS[perfil.dataset.perfil];
     if (!destino || perfil.getAttribute("aria-disabled") === "true") return;
 
-    play_a();
-    window.location.href = destino;
+    // Toca o som e espera um instante antes de trocar de tela, para ele não ser cortado
+    Sons.irPara(destino);
 }
 
 perfis.forEach((perfil, n) => {

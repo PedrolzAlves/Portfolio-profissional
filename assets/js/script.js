@@ -7,40 +7,10 @@
   https://codepen.io/Pixmy/pen/qaYQoV
 */
 
-//Audios (um elemento por som, reaproveitado: assim ele também toca durante o arraste no celular)
-const sons = {
-    navegar: new Audio('./assets/js/navigate.mp3'),
-    desligar: new Audio('./assets/js/shutdown.mp3'),
-    recompensa: new Audio('./assets/js/reward.mp3')
-};
-
-function tocar(som) {
-    som.muted = false;
-    som.currentTime = 0;
-    som.play().catch(function () {});
-}
-
-function play_a() { tocar(sons.navegar); }
-function play_c() { tocar(sons.desligar); }
-function play_d() { tocar(sons.recompensa); }
-
-// O iOS só toca som fora de um toque (ex.: ao arrastar a fileira) se aquele elemento
-// já tocou dentro de um toque: no primeiro toque os sons são "destravados" em silêncio
-function destravarSons() {
-    Object.values(sons).forEach(function (som) {
-        som.muted = true;
-        som.play().then(function () {
-            document.removeEventListener("touchend", destravarSons);
-            // Se um som de verdade começou nesse meio-tempo, ele já tirou o mudo: deixa tocar
-            if (som.muted) {
-                som.pause();
-                som.currentTime = 0;
-                som.muted = false;
-            }
-        }).catch(function () { som.muted = false; });
-    });
-}
-document.addEventListener("touchend", destravarSons);
+//Audios (sons.js)
+function play_a() { Sons.tocar("navegar"); }
+function play_c() { Sons.tocar("desligar"); }
+function play_d() { Sons.tocar("recompensa"); }
 
 $(document).ready(function(){
 		$(".gameText").hide();

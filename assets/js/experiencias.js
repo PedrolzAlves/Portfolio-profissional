@@ -4,11 +4,8 @@ const cartoes = Array.from(document.querySelectorAll(".cartao"));
 const VOLTAR = "./index.html#perfis";
 let atual = 0;
 
-//Audios
-function play_a() {
-    var audio = new Audio('./assets/js/navigate.mp3');
-    audio.play();
-}
+//Audios (sons.js)
+function play_a() { Sons.tocar("navegar"); }
 
 function selecionar(i, comFoco = true) {
     atual = Math.max(0, Math.min(cartoes.length - 1, i));
